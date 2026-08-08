@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  zkml-prover:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3011:3011"
+    environment:
+      - PORT=3011
+      - NODE_ENV=production
+    restart: unless-stopped

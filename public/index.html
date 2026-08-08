@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero-Knowledge Machine Learning (zkML) Proof Inspector | anderdebona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070913;
+      --panel: rgba(15, 23, 42, 0.75);
+      --border: rgba(168, 85, 247, 0.2);
+      --accent: #a855f7;
+      --accent-glow: rgba(168, 85, 247, 0.4);
+      --cyan: #06b6d4;
+      --green: #10b981;
+      --text: #f8fafc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 2rem; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    .brand { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; }
+    .btn { background: linear-gradient(135deg, #a855f7, #9333ea); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 700; cursor: pointer; }
+    pre { background: rgba(2, 6, 23, 0.9); border: 1px solid var(--border); padding: 1rem; border-radius: 0.5rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #e9d5ff; overflow-x: auto; max-height: 250px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="brand">🔐 Zero-Knowledge Machine Learning (zkML) Prover</div>
+      <div style="font-size: 0.85rem; color: #94a3b8;">Privacy-Preserving Neural Inference & Arithmetic Circuit Verifier • anderdebona</div>
+    </div>
+    <span style="background: rgba(168, 85, 247, 0.15); color: #e9d5ff; border: 1px solid rgba(233, 213, 255, 0.3); padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700;">zk-SNARK Circuit</span>
+  </header>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>1. Generate zkML Inference Proof</h2>
+      <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem;">
+        Proves neural network inference output without revealing private model weights $W$.
+      </p>
+      <button class="btn" onclick="generateZkProof()">Generate Proof &pi;</button>
+      <pre id="proofLog" style="margin-top: 1rem;">Click button to generate cryptographic proof &pi;...</pre>
+    </div>
+
+    <div class="panel">
+      <h2>2. Verify zk-SNARK Proof Soundness</h2>
+      <pre id="verifyLog">Awaiting verification status...</pre>
+    </div>
+  </div>
+
+  <script>
+    async function generateZkProof() {
+      const res = await fetch('/api/zkml/prove', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ inputVector: [1, 2, 3] })
+      });
+      const data = await res.json();
+      document.getElementById('proofLog').innerText = JSON.stringify(data.proof, null, 2);
+      document.getElementById('verifyLog').innerText = `Verification Result: ${data.isValid ? '✅ VALID zk-SNARK PROOF' : '❌ INVALID'}`;
+    }
+
+    window.onload = generateZkProof;
+  </script>
+</body>
+</html>
