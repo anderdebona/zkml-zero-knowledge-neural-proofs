@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "type": "module",
   "bin": {
-    "zkml-prover": "./dist/server.js"
+    "zkml-prover": "./dist/cli.js"
   },
   "scripts": {
     "build": "tsc",
