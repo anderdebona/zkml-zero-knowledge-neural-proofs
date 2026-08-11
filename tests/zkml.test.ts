@@ -3,6 +3,8 @@ import { ZKMLProverEngine } from '../src/zkp/snark-prover.js';
 import { ArithmeticNeuralCircuit } from '../src/zkp/circuit.js';
 import { MerkleCommitmentScheme } from '../src/zkp/merkle-commitment.js';
 import { BatchVerifier } from '../src/zkp/batch-verifier.js';
+import { RecursiveSNARKComposer } from '../src/zkp/recursive-snark.js';
+import { WitnessGenerator } from '../src/zkp/witness-generator.js';
 
 describe('Arithmetic Neural Circuit', () => {
   it('should compute W·x + b correctly', () => {
@@ -87,5 +89,43 @@ describe('Batch Verifier', () => {
     expect(benchmarks[0].batchSize).toBe(10);
     expect(benchmarks[2].batchSize).toBe(100);
     benchmarks.forEach((b) => expect(b.throughputProofsPerSec).toBeGreaterThan(0));
+  });
+});
+
+describe('Recursive SNARK Composer', () => {
+  it('should create base proofs', () => {
+    const proof = RecursiveSNARKComposer.createBaseProof(42);
+    expect(proof.length).toBe(64);
+  });
+
+  it('should compose proofs recursively', () => {
+    const base = RecursiveSNARKComposer.createBaseProof(1);
+    const composed = RecursiveSNARKComposer.compose(base, 'step-2');
+    expect(composed.isValid).toBe(true);
+    expect(composed.composedHash.length).toBe(64);
+  });
+
+  it('should build IVC chain', () => {
+    const chain = RecursiveSNARKComposer.buildIVCChain([1, 2, 3, 4, 5]);
+    expect(chain.chainLength).toBe(5);
+    expect(chain.allValid).toBe(true);
+    expect(chain.finalProof.length).toBe(64);
+  });
+});
+
+describe('Witness Generator', () => {
+  it('should generate valid witness for linear computation', () => {
+    const witness = WitnessGenerator.generateLinearWitness([2, 3], [4, 5], 1);
+    expect(witness.isSatisfied).toBe(true);
+    expect(witness.numPublic).toBeGreaterThan(0);
+    expect(witness.numPrivate).toBeGreaterThan(0);
+  });
+
+  it('should separate public and private assignments', () => {
+    const witness = WitnessGenerator.generateLinearWitness([1, 2], [3, 4], 0);
+    const publicVars = witness.assignments.filter(a => a.isPublic);
+    const privateVars = witness.assignments.filter(a => !a.isPublic);
+    expect(publicVars.length).toBe(witness.numPublic);
+    expect(privateVars.length).toBe(witness.numPrivate);
   });
 });
