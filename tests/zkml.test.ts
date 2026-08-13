@@ -129,3 +129,36 @@ describe('Witness Generator', () => {
     expect(privateVars.length).toBe(witness.numPrivate);
   });
 });
+
+describe('Halo2PolynomialCommitment (v4.0.0)', () => {
+  it('should commit to polynomial and verify opening proof at evaluation point', async () => {
+    const { Halo2PolynomialCommitment } = await import('../src/zkp/polynomial-commitment.js');
+    const coeffs = [3, 2, 1]; // p(x) = 3 + 2x + x^2
+    const commit = Halo2PolynomialCommitment.commit(coeffs);
+    expect(commit.commitmentHash.startsWith('0xpoly_')).toBe(true);
+
+    const pointZ = 2; // p(2) = 3 + 4 + 4 = 11
+    const opening = Halo2PolynomialCommitment.open(coeffs, pointZ);
+    expect(opening.evaluatedValue).toBe(11);
+
+    const isValid = Halo2PolynomialCommitment.verify(commit, pointZ, 11, opening, coeffs);
+    expect(isValid).toBe(true);
+  });
+});
+
+describe('QuantizedInferenceCircuitProver (v4.0.0)', () => {
+  it('should generate valid INT8 quantized proof within bounded range', async () => {
+    const { QuantizedInferenceCircuitProver } = await import('../src/zkp/quantized-prover.js');
+    const weights = [10, -5, 20];
+    const inputs = [4, 8, 2];
+    const bias = 16;
+    // 10*4 + (-5)*8 + 20*2 + 16 = 40 - 40 + 40 + 16 = 56
+    // scaled = floor(56 / 8) = 7
+
+    const proof = QuantizedInferenceCircuitProver.proveInt8Layer(weights, inputs, bias, 8);
+    expect(proof.quantizedOutput).toBe(7);
+    expect(proof.rangeCheckPassed).toBe(true);
+    expect(QuantizedInferenceCircuitProver.verifyQuantizedProof(proof)).toBe(true);
+  });
+});
+

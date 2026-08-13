@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software in research or zkML systems, please cite it as below."
+authors:
+  - family-names: "Debona"
+    given-names: "Anderson"
+    alias: "anderdebona"
+title: "Zero-Knowledge Neural Proofs (zkML): Halo2 Polynomial Commitments & Quantized Inference Proofs"
+version: 4.0.0
+date-released: 2026-08-13
+url: "https://github.com/anderdebona/zkml-zero-knowledge-neural-proofs"
+license: MIT
