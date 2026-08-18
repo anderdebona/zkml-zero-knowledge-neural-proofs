@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>zkML Zero-Knowledge Neural Proof Studio | anderdebona</title>
+  <title>zkML Zero-Knowledge Neural Proof Studio v5.0.0 | anderdebona</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #030712;
-      --panel: rgba(15, 23, 42, 0.8);
+      --panel: rgba(15, 23, 42, 0.85);
       --border: rgba(16, 185, 129, 0.25);
       --accent: #10b981;
       --cyan: #06b6d4;
       --purple: #8b5cf6;
+      --amber: #f59e0b;
       --text: #f9fafb;
       --text-dim: #94a3b8;
     }
@@ -22,30 +23,31 @@
     .brand { font-size: 1.6rem; font-weight: 700; background: linear-gradient(135deg, #10b981, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .status-badge { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; }
 
-    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-    .stat-card { background: var(--panel); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; text-align: center; }
-    .stat-val { font-size: 1.8rem; font-weight: 700; font-family: 'Fira Code', monospace; color: var(--accent); margin-top: 0.25rem; }
-    .stat-lbl { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+    .stats-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+    .stat-card { background: var(--panel); border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.85rem; text-align: center; }
+    .stat-val { font-size: 1.5rem; font-weight: 700; font-family: 'Fira Code', monospace; color: var(--accent); margin-top: 0.2rem; }
+    .stat-lbl { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
 
-    .main-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1.5rem; }
-    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem; backdrop-filter: blur(12px); }
-    .panel-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center; color: #a7f3d0; }
+    .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem; backdrop-filter: blur(12px); margin-bottom: 1.5rem; }
+    .panel-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center; color: #a7f3d0; }
 
-    .btn { background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: 0.2s all; }
+    .btn { background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 0.55rem 1rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: 0.2s all; font-size: 0.85rem; }
     .btn:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
     .btn-purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .btn-cyan { background: linear-gradient(135deg, #06b6d4, #0891b2); }
 
     .controls { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
-    pre { background: rgba(2, 6, 23, 0.95); border: 1px solid rgba(255, 255, 255, 0.08); padding: 0.75rem; border-radius: 0.5rem; font-family: 'Fira Code', monospace; font-size: 0.8rem; color: #a7f3d0; overflow-x: auto; max-height: 200px; }
+    pre { background: rgba(2, 6, 23, 0.95); border: 1px solid rgba(255, 255, 255, 0.08); padding: 0.75rem; border-radius: 0.5rem; font-family: 'Fira Code', monospace; font-size: 0.8rem; color: #a7f3d0; overflow-x: auto; max-height: 180px; }
   </style>
 </head>
 <body>
   <header>
     <div>
-      <div class="brand">🔐 zkML Zero-Knowledge Neural Proof Studio 🧠</div>
-      <div style="font-size: 0.85rem; color: var(--text-dim); margin-top: 0.2rem;">Halo2 Polynomial Commitments • Quantized INT8 Circuits • Zero-Knowledge Model Privacy • by anderdebona</div>
+      <div class="brand">🔐 zkML Zero-Knowledge Neural Proof Studio v5.0.0 🧠</div>
+      <div style="font-size: 0.85rem; color: var(--text-dim); margin-top: 0.2rem;">Plookup Non-Linear Activations • ZK Transformer Attention • Halo2 Polynomial Commitments • by anderdebona</div>
     </div>
-    <span class="status-badge">● Prover Circuit Online</span>
+    <span class="status-badge">● Zero-Knowledge SNARK v5.0 Active</span>
   </header>
 
   <div class="stats-row">
@@ -54,90 +56,111 @@
       <div class="stat-val" style="color: var(--accent);" id="statProofStatus">VERIFIED ✓</div>
     </div>
     <div class="stat-card">
-      <div class="stat-lbl">Model Weight Privacy</div>
+      <div class="stat-lbl">Plookup Argument</div>
+      <div class="stat-val" style="color: var(--cyan);" id="statPlookup">VALID ✓</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-lbl">ZK Attention Layer</div>
+      <div class="stat-val" style="color: #a78bfa;" id="statTransformer">PROVED ✓</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-lbl">Weight Privacy</div>
       <div class="stat-val" style="color: var(--purple);">100% Zero-Leak</div>
     </div>
     <div class="stat-card">
-      <div class="stat-lbl">Curve Security</div>
-      <div class="stat-val" style="color: var(--cyan);">BN254 / Halo2</div>
+      <div class="stat-lbl">Halo2 Poly Eval</div>
+      <div class="stat-val" style="color: var(--amber);" id="statHalo2">EXACT ✓</div>
     </div>
     <div class="stat-card">
-      <div class="stat-lbl">Verification Time</div>
-      <div class="stat-val">0.32 ms</div>
+      <div class="stat-lbl">Quantized Range</div>
+      <div class="stat-val" style="color: var(--accent);">INT8 [-128,127]</div>
     </div>
   </div>
 
   <div class="main-grid">
     <div class="panel">
       <div class="panel-title">
-        <span>⚡ Generate Zero-Knowledge Inference Proof</span>
+        <span>📑 Plookup Activation Lookup Table (GELU/SiLU) (v5.0.0)</span>
       </div>
-      <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1rem;">
-        Proves neural network forward pass $y = \operatorname{ReLU}(W \cdot x + b)$ without revealing private weights $W$.
-      </p>
       <div class="controls">
-        <button class="btn" onclick="generateZKProof([1, 2, 3])">Generate Proof (Input: [1, 2, 3])</button>
-        <button class="btn" onclick="generateZKProof([10, 5, 2])">Generate Proof (Input: [10, 5, 2])</button>
+        <button class="btn btn-cyan" onclick="runPlookup()">⚡ Prove GELU Activations with Plookup</button>
       </div>
-      <pre id="proofLog">Click button to synthesize zero-knowledge SNARK proof...</pre>
+      <pre id="plookupLog">Awaiting Plookup argument verification...</pre>
 
       <div class="panel-title" style="margin-top: 1rem;">
-        <span>📐 Halo2 Polynomial Evaluation Opening Proof (KZG)</span>
+        <span>🤖 Zero-Knowledge Transformer Self-Attention Layer (v5.0.0)</span>
       </div>
       <div class="controls">
-        <button class="btn btn-purple" onclick="generatePolyProof()">Commit & Open Poly P(z)</button>
+        <button class="btn btn-purple" onclick="runTransformerProof()">🧠 Prove Attention $Q K^T / \sqrt{d_k}$ Constraints</button>
       </div>
-      <pre id="polyLog">Awaiting polynomial commitment opening...</pre>
+      <pre id="transformerLog">Awaiting ZK Transformer attention proof...</pre>
     </div>
 
     <div class="panel">
       <div class="panel-title">
-        <span>🔢 Quantized INT8 Inference Circuit Prover</span>
+        <span>📐 Halo2 KZG Polynomial Commitment & Opening</span>
       </div>
       <div class="controls">
-        <button class="btn btn-purple" onclick="generateQuantizedProof()">Prove Quantized INT8 Layer</button>
+        <button class="btn btn-purple" onclick="runHalo2Proof()">Commit Poly p(x) & Verify Opening</button>
       </div>
-      <pre id="quantizedLog">Awaiting quantized circuit execution...</pre>
+      <pre id="halo2Log">Awaiting polynomial proof...</pre>
+
+      <div class="panel-title" style="margin-top: 1rem;">
+        <span>🔬 Zero-Knowledge Linear Neural Inference</span>
+      </div>
+      <div class="controls">
+        <button class="btn" onclick="runLinearZKML()">Generate SNARK Proof</button>
+      </div>
+      <pre id="zkmlLog">Awaiting inference proof generation...</pre>
     </div>
   </div>
 
   <script>
-    async function generateZKProof(inputVector) {
-      const res = await fetch('/api/zkml/prove', {
+    async function runPlookup() {
+      const res = await fetch('/api/zkml/plookup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ inputVector })
+        body: JSON.stringify({ inputs: [-20, -10, 0, 15, 30] })
       });
       const data = await res.json();
-      document.getElementById('statProofStatus').innerText = data.isValid ? 'VERIFIED ✓' : 'FAILED ✗';
-      document.getElementById('statProofStatus').style.color = data.isValid ? '#10b981' : '#f43f5e';
-      document.getElementById('proofLog').innerText = JSON.stringify(data, null, 2);
+      document.getElementById('statPlookup').innerText = data.isValid ? 'VALID ✓' : 'INVALID ✗';
+      document.getElementById('plookupLog').innerText = JSON.stringify(data, null, 2);
     }
 
-    async function generatePolyProof() {
+    async function runTransformerProof() {
+      const res = await fetch('/api/zkml/transformer-proof', { method: 'POST' });
+      const data = await res.json();
+      document.getElementById('statTransformer').innerText = data.isProofValid ? 'PROVED ✓' : 'FAILED';
+      document.getElementById('transformerLog').innerText = JSON.stringify(data, null, 2);
+    }
+
+    async function runHalo2Proof() {
       const res = await fetch('/api/zkml/polynomial-proof', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ coefficients: [5, -3, 2, 1], evalPoint: 3 })
+        body: JSON.stringify({ coefficients: [7, -2, 3, 1], evalPoint: 2 })
       });
       const data = await res.json();
-      document.getElementById('polyLog').innerText = JSON.stringify(data, null, 2);
+      document.getElementById('statHalo2').innerText = data.isValid ? 'EXACT ✓' : 'FAIL';
+      document.getElementById('halo2Log').innerText = JSON.stringify(data, null, 2);
     }
 
-    async function generateQuantizedProof() {
-      const res = await fetch('/api/zkml/quantized-proof', {
+    async function runLinearZKML() {
+      const res = await fetch('/api/zkml/prove', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ inputs: [10, 20, 30], weights: [3, 2, 1], biasVal: 5 })
+        body: JSON.stringify({ inputVector: [4, 5, 6] })
       });
       const data = await res.json();
-      document.getElementById('quantizedLog').innerText = JSON.stringify(data, null, 2);
+      document.getElementById('statProofStatus').innerText = data.isValid ? 'VERIFIED ✓' : 'FAILED';
+      document.getElementById('zkmlLog').innerText = JSON.stringify(data, null, 2);
     }
 
     window.onload = () => {
-      generateZKProof([1, 2, 3]);
-      generatePolyProof();
-      generateQuantizedProof();
+      runPlookup();
+      runTransformerProof();
+      runHalo2Proof();
+      runLinearZKML();
     };
   </script>
 </body>

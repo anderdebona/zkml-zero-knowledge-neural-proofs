@@ -1,7 +1,7 @@
 {
   "name": "zkml-zero-knowledge-neural-proofs",
-  "version": "4.0.0",
-  "description": "PhD-Grade Zero-Knowledge Machine Learning (zkML) Proof Generator & Neural Circuit Verifier",
+  "version": "5.0.0",
+  "description": "PhD-Grade Zero-Knowledge Machine Learning (zkML) Engine (Plookup Non-Linear Activations, ZK Transformer Attention Layer, Halo2 Polynomial Commitments & INT8 Circuits)",
   "main": "dist/server.js",
   "type": "module",
   "bin": {

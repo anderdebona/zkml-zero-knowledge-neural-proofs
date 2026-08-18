@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 import { ZKMLProverEngine } from './zkp/snark-prover.js';
 import { Halo2PolynomialCommitment } from './zkp/polynomial-commitment.js';
 import { QuantizedInferenceCircuitProver } from './zkp/quantized-prover.js';
+import { PlookupArgumentTable } from './zkp/plookup-argument-table.js';
+import { ZKTransformerLayerProver } from './zkp/zk-transformer-layer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +18,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 const secretWeights = [42, 108, 256];
 const bias = 7;
+const plookup = new PlookupArgumentTable();
 
 app.post('/api/zkml/prove', (req, res) => {
   const { inputVector = [1, 2, 3] } = req.body;
@@ -52,6 +55,33 @@ app.post('/api/zkml/quantized-proof', (req, res) => {
   });
 });
 
+app.post('/api/zkml/plookup', (req, res) => {
+  const { inputs = [-12, -4, 0, 8, 16] } = req.body;
+  const proof = plookup.generateLookupProof(inputs);
+  res.json(proof);
+});
+
+app.post('/api/zkml/transformer-proof', (req, res) => {
+  const qMatrix = [
+    [1.0, 0.5, -0.2, 0.8],
+    [0.2, 1.1, 0.4, -0.5],
+    [0.8, -0.3, 0.9, 0.1]
+  ];
+  const kMatrix = [
+    [0.9, 0.4, -0.1, 0.7],
+    [0.1, 1.0, 0.3, -0.4],
+    [0.7, -0.2, 0.8, 0.2]
+  ];
+  const vMatrix = [
+    [0.5, 0.2, 0.8, 0.1],
+    [0.4, 0.6, 0.3, 0.9],
+    [0.9, 0.1, 0.5, 0.4]
+  ];
+
+  const proof = ZKTransformerLayerProver.generateAttentionProof({ qMatrix, kMatrix, vMatrix });
+  res.json(proof);
+});
+
 app.listen(PORT, () => {
-  console.log(`🚀 zkML Zero-Knowledge Prover Turbocharged on http://localhost:${PORT}`);
+  console.log(`🚀 zkML Zero-Knowledge Prover v5.0.0 on http://localhost:${PORT}`);
 });

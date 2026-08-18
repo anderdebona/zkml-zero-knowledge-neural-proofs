@@ -162,3 +162,43 @@ describe('QuantizedInferenceCircuitProver (v4.0.0)', () => {
   });
 });
 
+describe('PlookupArgumentTable (v5.0.0)', () => {
+  it('should verify non-linear GELU activation lookups and generate grand product proof', async () => {
+    const { PlookupArgumentTable } = await import('../src/zkp/plookup-argument-table.js');
+    const plookup = new PlookupArgumentTable();
+
+    const inputs = [-10, 0, 5, 20];
+    const proof = plookup.generateLookupProof(inputs);
+
+    expect(proof.isValid).toBe(true);
+    expect(proof.tableSize).toBeGreaterThan(200);
+    expect(proof.grandProductCommitment.length).toBe(64);
+  });
+});
+
+describe('ZKTransformerLayerProver (v5.0.0)', () => {
+  it('should generate Zero-Knowledge attention matrix and LayerNorm constraints proof', async () => {
+    const { ZKTransformerLayerProver } = await import('../src/zkp/zk-transformer-layer.js');
+    const qMatrix = [
+      [1.0, 0.5, -0.2, 0.8],
+      [0.2, 1.1, 0.4, -0.5]
+    ];
+    const kMatrix = [
+      [0.9, 0.4, -0.1, 0.7],
+      [0.1, 1.0, 0.3, -0.4]
+    ];
+    const vMatrix = [
+      [0.5, 0.2, 0.8, 0.1],
+      [0.4, 0.6, 0.3, 0.9]
+    ];
+
+    const proof = ZKTransformerLayerProver.generateAttentionProof({ qMatrix, kMatrix, vMatrix });
+    expect(proof.isProofValid).toBe(true);
+    expect(proof.seqLength).toBe(2);
+    expect(proof.headDim).toBe(4);
+    expect(proof.snarkConstraintCount).toBeGreaterThan(0);
+    expect(proof.proofSignature.length).toBe(64);
+  });
+});
+
+

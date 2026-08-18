@@ -5,7 +5,7 @@ authors:
     given-names: "Anderson"
     alias: "anderdebona"
 title: "Zero-Knowledge Neural Proofs (zkML): Halo2 Polynomial Commitments & Quantized Inference Proofs"
-version: 4.0.0
-date-released: 2026-08-13
+version: 5.0.0
+date-released: 2026-08-18
 url: "https://github.com/anderdebona/zkml-zero-knowledge-neural-proofs"
 license: MIT
